@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="Suite">
+    <test name="UnitTesting">
+        <classes>
+            <class name="testing.UnitLevelTesting" />
+        </classes>
+    </test>
+    <test name="FunctionalTesting">
+        <classes>
+            <class name="testing.FunctionalTesting" />
+        </classes>
+    </test>
+    <test name="UITesting">
+        <classes>
+            <class name="testing.UITesting" />
+        </classes>
+    </test>
+    <test name="SomeFeature">
+        <groups>
+            <run>
+                <include name="someFeature" />
+            </run>
+        </groups>
+        <classes>
+            <class name="testing.UITesting" />
+            <class name="testing.UnitLevelTesting" />
+            <class name="testing.FunctionalTesting" />
+        </classes>
+    </test>
+</suite>
