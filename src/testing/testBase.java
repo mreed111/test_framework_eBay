@@ -14,21 +14,24 @@ import org.testng.annotations.Test;
 
 public class testBase {
 	
-	static WebDriver driver;
+	public WebDriver driver;
+	public Properties prop = new Properties();
 
 	public void Setup() throws IOException 
 	{
-		Properties prop = new Properties();
-		FileInputStream propStream = new FileInputStream("C:\\Users\\miker\\workspace\\framework_Boilerplate\\src\\config.properties");
+//		Properties prop = new Properties();
+//		FileInputStream propStream = new FileInputStream("C:\\Users\\miker\\workspace\\framework_Boilerplate\\src\\config.properties");
+//		
+//		prop.load(propStream);
+//		
+//		System.out.println("Setup func: " + prop.getProperty("url"));
+//		System.out.println("Setup func: " + prop.getProperty("browser"));
 		
-		prop.load(propStream);
-		
-		System.out.println("Setup func: " + prop.getProperty("url"));
-		System.out.println("Setup func: " + prop.getProperty("browser"));
+		this.getProps();
 		
 		System.setProperty("webdriver.chrome.driver", "C:\\Users\\miker\\Downloads\\chromedriver.exe");
-		driver=new ChromeDriver();
-		driver.navigate().to(prop.getProperty("url"));
+		this.driver=new ChromeDriver();
+		this.driver.navigate().to(this.prop.getProperty("url"));
 		
 	    //driver.manage().window().maximize();
 		
@@ -41,6 +44,19 @@ public class testBase {
 	{
 		System.out.println("TearDown func:");
 		driver.quit();
+	}
+	
+	public void getProps() throws IOException 
+	{
+		//
+		//Properties prop = new Properties();
+		FileInputStream propStream = new FileInputStream("C:\\Users\\miker\\workspace\\framework_Boilerplate\\src\\config.properties");
+		
+		prop.load(propStream);
+		
+		System.out.println("Setup func: " + this.prop.getProperty("url"));
+		System.out.println("Setup func: " + this.prop.getProperty("browser"));
+		
 	}
 
 }
