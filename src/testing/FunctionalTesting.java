@@ -15,7 +15,7 @@ public class FunctionalTesting {
 	testBase tb = new testBase();
 	
     @BeforeSuite
-    public void beforeSuite() throws IOException {
+    public void beforeSuite() throws IOException, InterruptedException {
         System.out.println("beforeSuite");
         tb.Setup();
         

@@ -1,7 +1,11 @@
 package testing;
 
+import java.util.Iterator;
+import java.util.Set;
+
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 
@@ -55,5 +59,62 @@ public void waitForLoad(WebDriver driver) {
     WebDriverWait wait = new WebDriverWait(driver, 30);
     wait.until(pageLoadCondition);
 }
+
+
+public String verifyLinkByPageTitle(WebElement link, String parentPageTitle)
+{
+	String nextLink = link.getText();
+	String nextLinkHref = link.getAttribute("href");
+	String newPageTitle = "";
+	
+	Set<String> winIds;
+	
+	System.out.println("verifyLinkByPageTitle: Testing \""+nextLink+"\" link:  href = " + nextLinkHref );
+	
+	winIds = this.driver.getWindowHandles();
+	int pagesBeforeClickingLink = winIds.size();
+	link.click();
+	this.waitForPageLoaded();
+	winIds = this.driver.getWindowHandles();
+	int pagesAfterClickingLink = winIds.size();
+	
+	if (pagesAfterClickingLink > pagesBeforeClickingLink)
+	{
+		// link opened a new window.
+		Iterator<String> winId = winIds.iterator();
+		String parentWin = winId.next();
+		String childWin = winId.next();
+		this.driver.switchTo().window(childWin);
+		newPageTitle = this.driver.getTitle();
+		//Assert.assertNotEquals("verify " + nextLink + " Link", this.titleFirstPage, newPageTitle);
+		
+		this.driver.close();
+		this.driver.switchTo().window(parentWin);
+		this.driver.navigate().refresh();
+	} else {
+		// link opened in same driver page.
+		newPageTitle = this.driver.getTitle();
+		//Assert.assertNotEquals("verify " + nextLink + " Link", parentPage, newPageTitle);
+		//System.out.println("\""+nextLink+"\" link openned \""+ newPageTitle + "\"");
+		this.driver.navigate().back();
+		this.waitForPageLoaded();
+		// some links require two attempts to go back to eBay.com
+		if (!this.driver.getTitle().equals(parentPageTitle))
+		{
+			System.out.println("clicking back button on \"" + nextLink + "\" page a second time.");
+			this.driver.navigate().back();
+			this.waitForPageLoaded();
+		}
+	}
+	
+	if (newPageTitle.equals(parentPageTitle))
+	{
+		return nextLink;
+	}
+	
+	return "";
+}
+
+
 
 }
