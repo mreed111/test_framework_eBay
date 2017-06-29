@@ -56,12 +56,7 @@ public class testBase {
 			System.setProperty("webdriver.ie.driver", "C:\\projects\\selenium\\selenium_drivers\\IEDriverServer.exe");
 			this.driver = new InternetExplorerDriver();
 		}
-		
-//		System.out.println("prop.browser = " + this.prop.getProperty("browser"));
-//		
-//		System.setProperty("webdriver.chrome.driver", "C:\\projects\\selenium\\selenium_drivers\\chromedriver.exe");
-//		this.driver=new ChromeDriver();
-		
+				
 		this.driver.navigate().to(this.prop.getProperty("url"));
 		
 	}
@@ -70,7 +65,7 @@ public class testBase {
 	public void TearDown()
 	{
 		System.out.println("TearDown func:");
-		this.driver.quit();
+		this.driver.close();
 	}
 	
 	public void getProps() throws IOException 
