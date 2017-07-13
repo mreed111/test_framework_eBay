@@ -32,7 +32,7 @@ public class UI_vaidate_footer_links extends validateAllLinks {
         System.out.println("Links Count = " + linksCount);
         
         Assert.assertTrue("page link count > 0", linksCount > 0);
-        Assert.assertTrue("page link count > 0", linksCount < 501);
+        Assert.assertTrue("page link count < 501", linksCount < 501);
     }
      
     @Test
