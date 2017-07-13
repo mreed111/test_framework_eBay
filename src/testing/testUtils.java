@@ -16,14 +16,15 @@ public class testUtils extends testBase {
 public String _verifyPageTitle(String[] strParts) 
 {
     // get the title of the page.
-    String pageTitle = driver.getTitle();
-    System.out.println("_verifyPageTitle:  Page Title = " + pageTitle);
+    String testPageTitle = driver.getTitle();
+    System.out.println("_verifyPageTitle:  Page Title = " + testPageTitle);
     
     for ( int i=0; i<strParts.length; i++ )
     {
-    	Assert.assertTrue(pageTitle.contains(strParts[i]), strParts[i] + "in page title");
+    	System.out.println("_verifyPageTitle:: " + testPageTitle);
+    	Assert.assertTrue(testPageTitle.contains(strParts[i]), "\"" + strParts[i] + "\" in page title \"" +testPageTitle+ "\".");
     }
-    return pageTitle;
+    return testPageTitle;
 }
 
 public String _verifyPageTitle()
@@ -95,7 +96,7 @@ public String verifyLinkByPageTitle(WebElement link, String parentPageTitle)
 		// link opened in same driver page.
 		newPageTitle = this.driver.getTitle();
 		//Assert.assertNotEquals("verify " + nextLink + " Link", parentPage, newPageTitle);
-		//System.out.println("\""+nextLink+"\" link openned \""+ newPageTitle + "\"");
+		//System.out.println("\""+nextLink+"\" link opened \""+ newPageTitle + "\"");
 		this.driver.navigate().back();
 		this.waitForPageLoaded();
 		// some links require two attempts to go back to eBay.com

@@ -37,5 +37,6 @@
 	<classpathentry kind="lib" path="C:/projects/selenium/selenium_jars/lib/xalan-2.7.2.jar"/>
 	<classpathentry kind="lib" path="C:/projects/selenium/selenium_jars/lib/xercesImpl-2.11.0.jar"/>
 	<classpathentry kind="lib" path="C:/projects/selenium/selenium_jars/lib/xml-apis-1.4.01.jar"/>
+	<classpathentry kind="lib" path="C:/Users/miker/Downloads/jexcelapi_2_6_12/jexcelapi/jxl.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

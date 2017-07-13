@@ -41,19 +41,21 @@ public class testBase {
 	{
 		this.getProps();
 		
+		String driversPath = this.prop.getProperty("drivers");
+		
 		if (this.prop.getProperty("browser").equals("chrome")) 
 		{ 
-			System.setProperty("webdriver.chrome.driver", "C:\\projects\\selenium\\selenium_drivers\\chromedriver.exe");
+			System.setProperty("webdriver.chrome.driver", driversPath + "chromedriver.exe");
 			this.driver=new ChromeDriver();
 		} 
 		else if (this.prop.getProperty("browser").equals("firefox")) 
 		{
-			System.setProperty("webdriver.gecko.driver","c:\\projects\\selenium\\selenium_drivers\\geckodriver.exe");
+			System.setProperty("webdriver.gecko.driver", driversPath + "geckodriver.exe");
 			this.driver = new FirefoxDriver();
 		} 
 		else 
 		{
-			System.setProperty("webdriver.ie.driver", "C:\\projects\\selenium\\selenium_drivers\\IEDriverServer.exe");
+			System.setProperty("webdriver.ie.driver", driversPath + "IEDriverServer.exe");
 			this.driver = new InternetExplorerDriver();
 		}
 				
@@ -72,7 +74,7 @@ public class testBase {
 	{
 		//
 		//Properties prop = new Properties();
-		FileInputStream propStream = new FileInputStream("C:\\Users\\miker\\workspace\\test_framework_eBay\\src\\config.properties");
+		FileInputStream propStream = new FileInputStream(".\\src\\config.properties"); // "C:\\Users\\miker\\workspace\\test_framework_eBay\\src\\config.properties");
 		
 		this.prop.load(propStream);
 		

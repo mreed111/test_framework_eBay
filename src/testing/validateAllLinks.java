@@ -17,7 +17,9 @@ import org.testng.annotations.Test;
 public class validateAllLinks {
 	
 	testUtils tb = new testUtils();
+	//ReadWriteExcelData xlsData = new ReadWriteExcelData();
 	
+	// default target link list is footer section of default URL (this.prop.getProperty("url"))
 	public String targetDOMElement = "//*[@id='glbfooter']";
 	public String[] validLinkTestResults = {"OK", "Moved Permanently", "Found"};
 	
@@ -36,7 +38,7 @@ public class validateAllLinks {
 	    {
 	    	String nextLink = this.linksCollection.get(i).getText();
 	    	String nextLinkHref = this.linksCollection.get(i).getAttribute("href");
-	    	//System.out.println("Testing \""+nextLink+"\" link:  href = " + nextLinkHref );
+	    	//System.out.println("getLinkDataList:: Testing \""+nextLink+"\" link:  href = " + nextLinkHref );
 	
 	    	data[i][0] = i;
 	    	data[i][1] = nextLink;
@@ -63,8 +65,6 @@ public class validateAllLinks {
  		}  				
  	}
 	
-
-	
 	@BeforeTest
     public void initBrowser() throws IOException, InterruptedException 
 	{
@@ -81,7 +81,7 @@ public class validateAllLinks {
 	}
 	
 	@Test
-    public void TC_countTargetLinks() throws InterruptedException 
+    public void TC_countTargetLinks() // throws InterruptedException 
     {
 		this.getLinkDataList();
         System.out.println("Testing \""+linksCollection.size()+"\" links:  " );
@@ -122,5 +122,7 @@ public class validateAllLinks {
 	{
 		return this.linkData;
 	}
+	
+
 
 }
