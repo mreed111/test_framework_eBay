@@ -1,3 +1,4 @@
-# framework_Boilerplate
+# Example Selenium Framework
 
-selenium framework.
+Demonstration framework.  Test cases validate all links on a specified page.
+
